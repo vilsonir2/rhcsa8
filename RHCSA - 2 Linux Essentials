@@ -1,0 +1,236 @@
+5. -> Directory tree
+
+6. -> Root directory and User directories
+    Root directory is the start of the tree / 
+    User directories /home (common users), /root to root user
+
+7. -> Paths, absolute and relative
+    absolute starts from the / (root directory, the parent directory)
+    relative starts from where you are positioned in the directory tree 
+
+    command -option arguments
+    ls      -l      /var
+        
+8. -> pwd and cd
+    pwd - print work directory
+    cd - change directory
+
+9. -> ls
+    ls -a   -> all files, including hidden files (.file)
+    ls -l   -> long list
+    ls -ltr -> (l)long list, (r)reverse, (t)modification time
+    ls -lur -> (l)long list, (r)reverse, (u)access time
+            -u     with -lt: sort by, and show, access time; with -l: show access time and sort by name; otherwise: sort by access time, newest first
+
+10. -> cal, uptime, date
+
+11. -> lscpu, free
+    lscpu display information about CPU
+    free display information about memory
+     free -l -> Display LOW and HIGH memory utilization (LOW kernel, HIGH user and kernel)
+12. -> df, du
+    df - report file system disk space usage
+    du - estimate file space usage
+
+    df -T -> print file system type
+    df -i -> list inode information instead of block usage
+
+    du -ch -> human readable, consolidate total
+
+13. -> history, exit and clear
+    history contains a loist of commands executed on the system
+    !87 execute the history command line 87
+
+14. -> whatis, type, man
+    type -> Display information about command type.
+    type ls
+
+15. -> w, last
+    last, lastb - show a listing of last logged in users
+    w - Show who is logged on and what they are doing.
+
+    last -> last login for all user
+    last -x -> last reboots
+***** -> useful to verify when new kernel is loaded
+
+
+    w 
+    Options:
+    -h, --no-header     do not print header
+    -u, --no-current    ignore current process username
+    -s, --short         short format
+    -f, --from          show remote hostname field
+    -o, --old-style     old style output
+    -i, --ip-addr       display IP address instead of hostname (if possible)
+
+16. -> uname, hostname
+    uname - print system information
+    hostname - show or set the system's host name
+
+    uname:
+        -a, --all                print all information, in the following order, except omit -p and -i if unknown:
+        -s, --kernel-name        print the kernel name
+        -n, --nodename           print the network node hostname
+        -r, --kernel-release     print the kernel release
+        -v, --kernel-version     print the kernel version
+        -m, --machine            print the machine hardware name
+        -p, --processor          print the processor type (non-portable)
+        -i, --hardware-platform  print the hardware platform (non-portable)
+        -o, --operating-system   print the operating system
+
+    hostname:
+        Program options:
+        -a, --alias            alias names
+        -A, --all-fqdns        all long host names (FQDNs)
+        -b, --boot             set default hostname if none available
+        -d, --domain           DNS domain name
+        -f, --fqdn, --long     long host name (FQDN)
+        -F, --file             read host name or NIS domain name from given file
+        -i, --ip-address       addresses for the host name
+        -I, --all-ip-addresses all addresses for the host
+        -s, --short            short host name
+        -y, --yp, --nis        NIS/YP domain name    
+
+17. -> touch, mkdir
+    touch - change file timestamps (if there is no file, it will create a new one)
+    mkdir - make directories
+
+    mkdir:
+          -m, --mode=MODE   set file mode (as in chmod), not a=rwx - umask
+          -p, --parents     no error if existing, make parent directories as needed
+          -v, --verbose     print a message for each created directory
+          -Z                set SELinux security context of each created directory to the default type
+
+18. -> cp, mv
+    cp - copy files and directories
+    mv move files and directories
+
+    cp:  
+        -a, --archive                same as -dR --preserve=all
+        -b                           like --backup but does not accept an argument
+        -f, --force                  if an existing destination file cannot be opened, remove it and try again (this option is ignored when the -n option is also used) 
+        -i, --interactive            prompt before overwrite (overrides a prvious -n option)
+        -p                           same as --preserve=mode,ownership,timestamps
+        -R, -r, --recursive          copy directories recursively
+        -s, --symbolic-link          make symbolic links instead of copying
+        -u, --update                 copy only when the SOURCE file is newer
+        -Z                           set SELinux security context of destination file to default type
+
+
+    
+ 19. -> rmdir, rm
+        rmdir -> Remove the DIRECTORY(ies), if they are empty.
+            --ignore-fail-on-non-empty ignore each failure that is solely because a directory is non-empty
+            -p, --parents   remove DIRECTORY and its ancestors; e.g., 'rmdir -p a/b/c' is similar to 'rmdir a/b/c a/b a'
+
+        rm -> Remove (unlink) the FILE(s).
+            -f, --force           ignore nonexistent files and arguments, never prompt
+            -i                    prompt before every removal
+            -I                    prompt once before removing more than three files, or when removing recursively; less intrusive than -i, while still giving protection against most mistakes
+            -r, -R, --recursive   remove directories and their contents recursively
+            -d, --dir             remove empty directories
+   
+20. -> tar
+    tar -> GNU 'tar' saves many files together into a single tape or disk archive, and can restore individual files from the archive.
+
+    create a tar file:
+    # tar -cvf mytarfile.tar mydir1/
+
+    create a compressed tar file (warning: the order of the option make difference!)
+    # tar -czvf mytarfile.tar mydir1/
+
+    list a tar file content
+    # tar -t mytarfile.tar
+
+    extract a tar file in a specific directory
+    # tar -xfv mytarfile.tar -C t1/
+
+    extract a tar file in the local directory
+    # tar -xfv mytarfile.tar
+
+21. -> cat, echo
+    cat - concatenate files and print on the standard output
+    echo - display a line of text
+
+    echo:
+    echo $MYVAR     -> display the MYVAR content
+    echo "$MYVAR"   -> display the content of MYVAR
+    echo '$MYVAR'   -> display $MYVAR
+
+22. -> head, tail, sort
+    sort - sort lines of text files
+    tail - output the last part of files
+    head - output the first part of files
+
+    sort:
+    to sort numbers
+    # sort -n myfile.txt
+
+23. -> pipe grep
+    grep, egrep, fgrep, rgrep - print lines that match pattern
+
+24. -> diff
+    diff - compare files line by line
+    diff -q f1.txt f2.txt -> return if files are equal or differ
+    diff -c f1.txt f2.txt -> display more information about content (good to visualize)
+    diff -y f1.txt f2.txt -> display files side by side
+
+25. -> sudo, su
+    sudo, sudoedit — execute a command as another user
+    user need to be into /etc/sudoers file or a file into /etc/sudoers.d  directory
+
+    su - run a command with substitute user and group ID
+    you can use su to become another user
+    su - user1
+
+26. -> find
+    find - search for files in a directory hierarchy
+    find is powerfull once you can mix search with command execution and with conditions
+
+    find . -type f                              -> all the files in the current directory (.)
+    find . -type d                              -> all the directories in the current directory
+    find . -name "*.txt                         -> all files that contain .txt in the current directory
+    find . -iname dir                           -> all files/directories that match with dir, upper or lower case (iname -ignorecase)
+    find . -iname dir -delete                   -> delete all files/directories that match with dir, upper or lower case
+    find . -name "*.txt" -exec cp {}{,.new} \;  -> copy all files that match *.txt to a *.txt.new (it uses exec module)
+
+27. -> hard and soft link
+    hard links are a entry in the inode to the same file 
+        hard link only in the same file system
+        you cannot have hard links to a directory
+    soft links are a new file that points to a file
+        soft link allow you to link to a file in a different file system
+        you can soft link a directory
+
+    using hardlink and find you can reduce time for copying large files into the same filesystem
+
+28. -> gedit, nano
+    gedit - graphic editor
+    nano - cli editor
+
+29. -> vi
+    you need to learn how to use vi, it is the best editor for CLI
+
+
+    vim has macros, so you can record a macro with a sequence of command and run it later
+        Start recording by pressing q, followed by a lower case character to name the macro
+        Perform any typical editing, actions inside Vim editor, which will be recorded
+        Stop recording by pressing ESC+q
+        Play the recorded macro by pressing @ followed by the macro name
+        To repeat macros multiple times, press : NN @ macro name. NN is a number
+
+    macro to create a sequence
+        insert 1. in a line
+        start a macro ESC, q, a
+        yy to copy the line
+        p to paste
+        ctrl+a to increase the value 1 to 2
+        ESC, q to finish recording
+        99@a to execute 99 times the macro
+
+    :set number         -> to see the line numbers
+
+
+ 
+
+    
