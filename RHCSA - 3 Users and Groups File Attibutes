@@ -1,0 +1,8 @@
+There are ome attibutes that you can assign to the files and dirtectories in order to prevent users from delete, change or adding content to files
+It override ROOT permissions, it means neither users or root can change the file 
+
+chattr {options} {attibutes} {filename}
+
+lsattr {filename}
+
+

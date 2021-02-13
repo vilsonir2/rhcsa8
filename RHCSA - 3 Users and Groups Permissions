@@ -1,0 +1,84 @@
+Types of file in Linux:
+    d . directory
+    - . regular file
+    c . character device file
+    b . block device file
+    s . local socket file
+    l . symbolic link
+    p . named pipe
+
+Permissions:
+    > -rwxrw-r-- (10 positions)
+    position 1      - type of file
+    positions 2-4   - owner
+    positions 5-7   - group
+    positions 8-10  - others
+
+    Divided in
+        owner
+        group
+        others
+
+    Sets
+        r - 4 - read
+        w - 2 - write
+        x - 1 - execute/access
+        - - 0 - no permission
+
+    Levels
+        u   - user
+        g   - group
+        o   - other
+        a   - all
+
+    Modes
+        + . add
+        - . remove
+        = . set equls
+
+Ex:
+    chmod u+w file.txt
+    chmod g-r file.txt
+    chmod o=r file.txt
+
+chmod 
+    Symbolic sign
+    # chmod u+rwx,g=rw,o=-file.txt
+    Absolute value
+    # chmod 760 file.txt
+
+
+chown - change file/directory owner and group 
+chgrp - change file/directory group
+ 
+Umask -> default permission values to files and directories
+default 0022
+    - first to special permission
+    - second to owner permissions
+    - third to  group permissions
+    - fourth to other permissions
+
+
+    [root@rhcsa8-1 ~]# umask
+    0022
+     
+    [root@rhcsa8-1 ~]# umask -S
+    u=rwx,g=rx,o=rx
+
+    [root@rhcsa8-1 ~]# umask 0002
+    [root@rhcsa8-1 ~]# umask
+    0002
+
+
+Default Permissions - unmask
+    Directories 777 - umask
+    Files 666 - umask
+
+Changing default values
+    - for all user in the system
+        /etc/profile
+    - for a specific user
+        ~/.bash_profile
+
+
+

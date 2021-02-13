@@ -1,0 +1,71 @@
+There are three special permission designed to allow special funcionalities
+    SUID        - 4 - Permision to user     - regular users to run executable files or programs as the owner(same rights)
+    SGID        - 2 - Permission to group   - regular users to run executable files or programs as the group(same rights)
+    Sticky bit  - 1 - Permission to others  - prevent anyone on the system to remove files except the owner (used in shared directories)
+
+
+    # chmod u+s program
+    # chmod 4755 program
+    
+    # chmod g+s program
+`   # chmod 4775 program
+
+    # chmod o+t directory
+    # chmod 1777 directory
+
+
+
+LAB:
+create two user john and mary
+create a shared directory (/opt/shared) with 777 permissions
+
+log into john user and create two files
+    - a text file called program.txt
+    - and a program file called program.c with below content
+
+#include <stdio.h>
+#include <stdlib.h> // For exit() function
+int main() {
+    char c[1000];
+    FILE *fptr;
+    if ((fptr = fopen("program.txt", "r")) == NULL) {
+        printf("Error! opening file");
+        // Program exits if file pointer returns NULL.
+        exit(1);
+    }
+
+    // reads text until newline is encountered
+    fscanf(fptr, "%[^\n]", c);
+    printf("Data from the file:\n%s", c);
+    fclose(fptr);
+
+    return 0;
+}
+
+compile the program 
+# gcc program.c -o program
+
+change permission to allow all to execute the program
+# chmod 555 program
+
+create a program.txt file with any content
+change the permission to only the owner to read it
+# chmod 600 program.txt
+
+run as john
+# ./program
+it supose to be allowed to read the program.txt file and display its content
+
+run as mary
+# ./program
+it is supposed to NOT be allowed to read the program.txt content
+
+change the program permissions to allow regular user to execute program as the owner
+# chmod u+s program
+
+run the program as mary again
+it supose to be allowed to read the program.txt file and display its content
+
+
+ 
+

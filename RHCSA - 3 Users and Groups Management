@@ -1,0 +1,37 @@
+Creating Users
+    # useradd {options} {username}
+    # useradd -s /bin/bash -u 2020 -c "Admin User" -e 2022-01-01 jerry
+        s -> shell
+        e -> expire date
+
+chage -> to see account user information
+    # chage -l jerry -> see user account information    
+    # chage -d 0 jerry -> force user to change its password on the next login
+
+    
+
+Creating Groups
+    # groupadd {option} {groupname}
+    # groupadd -g 2001 network  
+
+Adding a user in a group
+    # usermod -a -G network jerry (-a add a new group)
+    
+    **** if you dont user -a option, all groups for the user will be deleted and only the new group will be add
+    ex: jerry is on the network group
+        if you execute this command
+        # usermod -G desktop jerry
+        jerry will not be in network group, only in desktop group
+        to make sure jerry will be in two groups (network and desktop) user -a
+        # usermod -a -G desktop jerry
+
+
+Primary Group   -> will be the group assigned in the files and directories created by the user
+Secondary Group -> The user has the same group rights to write/read/execute for files and directories
+
+
+Verifying user groups
+    # id jerry
+
+
+
